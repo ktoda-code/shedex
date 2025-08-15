@@ -4,9 +4,35 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.github</groupId>
+    <name>Shedex</name>
+    <description>Fast, flexible recurrence scheduling for Java.</description>
+    <url>https://github.com/ktoda-code/shedex</url>
+    <inceptionYear>2025</inceptionYear>
+    <packaging>jar</packaging>
+
+    <groupId>io.github.ktoda-code</groupId>
     <artifactId>shedex</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <scm>
+        <connection>scm:git:https://github.com/ktoda-code/shedex.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/ktoda-code/shedex.git</developerConnection>
+        <url>https://github.com/ktoda-code/shedex</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>ktoda-code</id>
+            <name>Konstantin Todorov Andreev</name>
+            <url>https://github.com/ktoda-code</url>
+            <roles>
+                <role>owner</role>
+                <role>lead</role>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
 
     <licenses>
         <license>
@@ -18,9 +44,45 @@
     </licenses>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <maven.compiler.plugin.version>3.14.0</maven.compiler.plugin.version>
+        <maven.enforcer.plugin.version>3.6.1</maven.enforcer.plugin.version>
     </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${maven.enforcer.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>[17,)</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven.compiler.plugin.version}</version>
+                <configuration>
+                    <release>${maven.compiler.release}</release>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
